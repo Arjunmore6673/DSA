@@ -1,0 +1,6 @@
+package codingninja.bst;
+
+public class BalancedTreeReturn {
+    int height;
+    boolean isBalanced;
+}
