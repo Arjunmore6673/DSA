@@ -1,4 +1,5 @@
 package codingninja.graphs;
+
 import java.util.Scanner;
 
 
@@ -18,8 +19,14 @@ public class GraphsProblems {
         int dest = scanner.nextInt();
         //hasPath(adjMatrix, source, dest);
         GraphsProblemImplementation graph = new GraphsProblemImplementation();
-        graph.hasPath(adjMatrix, source, dest);
-        System.out.println(graph.getPath(adjMatrix, source, dest));
+//        graph.hasPath(adjMatrix, source, dest);
+//        System.out.println(graph.getPath(adjMatrix, source, dest));
+//        graph.getPathBFS(adjMatrix, source, dest);
+//        System.out.print("connected components ");
+//        graph.disconnectedGraph(adjMatrix);
+//        System.out.println();
+       // System.out.println("is graph Connected " + graph.isGraphConnected(adjMatrix));
+        ;
     }
 
 
