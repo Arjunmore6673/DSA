@@ -6,7 +6,6 @@ public class RatInMaze {
     public static void main(String[] args) {
         int[][] maze = new int[][]{{1, 1, 0}, {1, 1, 0}, {1, 1, 1}};
         System.out.println(ratInMaze(maze));
-        ;
     }
 
     private static boolean ratInMaze(int[][] maze) {

@@ -154,7 +154,7 @@ public class BinaryTreeUse {
 //        root.right= rootRight;
 //
 //
-//        BinaryTreeNode<Integer> twoRight = new BinaryTreeNode<Integer>(4);
+//        BinaryTreeNode<Integer> 0. = new BinaryTreeNode<Integer>(4);
 //        BinaryTreeNode<Integer> threeLeft = new BinaryTreeNode<Integer>(5);
 //
 //        rootLeft.right= twoRight;

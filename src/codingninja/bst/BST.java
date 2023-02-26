@@ -30,6 +30,7 @@ public class BST {
 //        root.right = c;
 //        root.right.left = d;
     }
+
     private static LinkedListNode<Integer> insertAtEnd(LinkedListNode<Integer> head, int data) {
         LinkedListNode<Integer> node = head;
         LinkedListNode<Integer> prev = head;

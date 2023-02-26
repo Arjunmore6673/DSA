@@ -10,7 +10,6 @@ public class TickTackGame {
     public static void main(String[] args) {
         TickTackGame tickTackGame = new TickTackGame();
         tickTackGame.startGame();
-
     }
 
     private void startGame() {
@@ -27,7 +26,7 @@ public class TickTackGame {
 //        play the game.
         boolean player1Turn = true;
         int status = STATUS.INCOMPLETE;
-        while (board.count == board.boardSize ) {
+        while (status == STATUS.INCOMPLETE || status == STATUS.INVALID_MOVE) {
             Scanner scanner = new Scanner(System.in);
             if (player1Turn) {
                 System.out.println("Player 1 " + p1.getPlayerName() + " 's turn");
@@ -35,11 +34,10 @@ public class TickTackGame {
                 int x = scanner.nextInt();
                 System.out.println("Enter Y");
                 int y = scanner.nextInt();
-                 status = board.move(p1.getSymbol(), x, y);
+                status = board.move(p1.getSymbol(), x, y);
                 if (STATUS.INVALID_MOVE == status) {
                     System.out.println("invalid move please try again.");
-                }else {
-                    player1Turn = false;
+                    continue;
                 }
             } else {
                 System.out.println("Player 2 " + p2.getPlayerName() + " 's turn");
@@ -47,23 +45,30 @@ public class TickTackGame {
                 int x = scanner.nextInt();
                 System.out.println("Enter Y");
                 int y = scanner.nextInt();
-                 status = board.move(p2.getSymbol(), x, y);
+                status = board.move(p2.getSymbol(), x, y);
                 if (STATUS.INVALID_MOVE == status) {
                     System.out.println("invalid move please try again.");
+                    continue;
                 }
-                player1Turn = true;
             }
-            if (status == STATUS.PLAYER_1_WINS || status == STATUS.PLAYER_2_WINS)
-                break;
+            player1Turn = !player1Turn;
+            board.print();
         }
+        if (status == STATUS.PLAYER_1_WINS)
+            System.out.println("Player 1 " + p1.getPlayerName() + " wins");
+        else if (status == STATUS.PLAYER_2_WINS)
+            System.out.println("Player 1 " + p1.getPlayerName() + " wins");
+        else if (status == STATUS.DRAW)
+            System.out.println("Draw");
     }
 
     private Player takePlayerInput(int playerNo) {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Enter " + playerNo + "Player Name : ");
-        String name = scanner.next();
-        System.out.println("Enter " + playerNo + "Player symbol : ");
-        char symbol = scanner.next().charAt(0);
-        return new Player(name, symbol);
+//        Scanner scanner = new Scanner(System.in);
+//        System.out.println("Enter " + playerNo + "Player Name : ");
+//        String name = scanner.next();
+//        System.out.println("Enter " + playerNo + "Player symbol : ");
+//        char symbol = scanner.next().charAt(0);
+//        return new Player(name, symbol);
+        return playerNo == 1 ? new Player("arjun", 'x') : new Player("more", '0');
     }
 }
