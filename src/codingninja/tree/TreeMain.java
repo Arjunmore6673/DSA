@@ -138,6 +138,7 @@ public class TreeMain {
     }
     static TreeNode<Integer> largest = new TreeNode<>(Integer.MIN_VALUE);
     static TreeNode<Integer> smaller = new TreeNode<>(Integer.MIN_VALUE);
+
     public static void findSecondLargest(TreeNode<Integer> root, int n) {
         if (root == null) return;
         if (root.data > largest.data) {
@@ -155,18 +156,19 @@ public class TreeMain {
 
     public static TreeNode<Integer> findSecondLargest(TreeNode<Integer> root) {
         TreeNode<Integer> largest = new TreeNode<>(Integer.MIN_VALUE);
-        findSecondLargest(root, 2);
+        findSecondLargest(root, Integer.MIN_VALUE);
         System.out.println(smaller.data + " TreeNode<Integer>");
         return smaller;
     }
+
 
     public static void main(String[] args) {
         TreeNode<Integer> root = new TreeNode<>(4);
         TreeNode<Integer> root1 = new TreeNode<>(2);
         TreeNode<Integer> root2 = new TreeNode<>(3);
-        TreeNode<Integer> root3 = new TreeNode<>(21);
-        TreeNode<Integer> root4 = new TreeNode<>(35);
-        TreeNode<Integer> root5 = new TreeNode<>(16);
+        TreeNode<Integer> root3 = new TreeNode<>(2);
+        TreeNode<Integer> root4 = new TreeNode<>(2);
+        TreeNode<Integer> root5 = new TreeNode<>(22);
         root.children.add(root1);
         root.children.add(root2);
         root.children.add(root3);
@@ -183,13 +185,35 @@ public class TreeMain {
 //        printTreeDetailed(root);
 //        System.out.println("Node count " + countNodes(root));
 //        System.out.println("Node sum " + sumNodes(root));
-//        System.out.println(maxSumNode(root).data);
-//        System.out.println(findNextLargerNode(root, 35).data);
+//        System.out.println(maxSumNode(root));
+        int value = 22;
+        System.out.println(findNextLargerNode(root, value).data);
+        System.out.println(_findNextLargerNode(root, value).data);
 //        TreeNode<Integer> res = findNextLargerNode(root, 20);
-        TreeNode<Integer> res = findSecondLargest(root);
+//        TreeNode<Integer> res = findSecondLargest(root);
 //        System.out.println(res != null ? res.data : "");
 
     }
+
+
+    private static void _findNextLargerNode(TreeNode<Integer> root, ArrayList<Integer> nextLargeElements, int num) {
+        if(root == null)  return;
+        if(root.data > num)
+            nextLargeElements.add(root.data);
+
+        for(TreeNode<Integer> node : root.children)
+            _findNextLargerNode(node,nextLargeElements,num);
+    }
+
+    private static TreeNode<Integer> _findNextLargerNode(TreeNode<Integer> root, int num) {
+        ArrayList<Integer> list = new ArrayList<>();
+         _findNextLargerNode(root, list, num);
+         TreeNode<Integer> node = new TreeNode<>(Integer.MAX_VALUE);
+         for(int in : list)
+             if(in < node.data) node.data = in;
+        return node;
+    }
+
 
     static class NextLarger<T> {
         TreeNode<T> node;
